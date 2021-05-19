@@ -13,7 +13,7 @@ describe('API Routes', () => {
 
   describe('/api/gifs', () => {
     let user;
-    let gif;
+
 
     beforeAll(async () => {
       execSync('npm run recreate-tables');
@@ -29,6 +29,7 @@ describe('API Routes', () => {
       expect(response.status).toBe(200);
 
       user = response.body;
+      console.log(user);
     });
 
     let gif = {
@@ -50,9 +51,22 @@ describe('API Routes', () => {
           'hash': '23c2bbc1d41e1376b8252ef4a6505bb2'
         }
 
-    },
-    // append the token to your requests:
-    //  .set('Authorization', user.token);
-    
-    
-  
+      },
+    };
+    test('POST favorite', async () => {
+      gif.userId = user.id;
+      const response = await request
+        .post('/api/favorites')
+        .set('Authorization', user.token)
+        .send(gif);
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(gif);
+      gif = response.body;
+    }
+    );
+
+
+
+  });
+});
