@@ -26,8 +26,8 @@ async function run() {
     await Promise.all(
       gifs.map(gif => {
         return client.query(`
-        INSERT INTO cats (url, title, rating, images, user_id)
-        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        INSERT INTO favorites (url, title, rating, images, user_id)
+        VALUES ($1, $2, $3, $4, $5)
         `,
         [gif.url, gif.title, gif.rating, gif.images, user.id]);
       })

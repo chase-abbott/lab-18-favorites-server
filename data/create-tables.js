@@ -17,7 +17,7 @@ async function run() {
         hash VARCHAR(512) NOT NULL
       );
     
-      CREATE TABLE gifs (
+      CREATE TABLE favorites (
         id SERIAL PRIMARY KEY NOT NULL,
         url VARCHAR(512) NOT NULL,
         title VARCHAR(512) NOT NULL,
