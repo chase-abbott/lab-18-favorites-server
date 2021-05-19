@@ -13,7 +13,7 @@ describe('API Routes', () => {
 
   describe('/api/gifs', () => {
     let user;
-   
+    let gif;
 
     beforeAll(async () => {
       execSync('npm run recreate-tables');
