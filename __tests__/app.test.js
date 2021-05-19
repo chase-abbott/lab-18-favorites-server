@@ -13,7 +13,6 @@ describe('API Routes', () => {
 
   describe('/api/gifs', () => {
     let user;
-    let gif;
 
     beforeAll(async () => {
       execSync('npm run recreate-tables');
@@ -50,9 +49,11 @@ describe('API Routes', () => {
           'hash': '23c2bbc1d41e1376b8252ef4a6505bb2'
         }
 
-    },
-    // append the token to your requests:
-    //  .set('Authorization', user.token);
+      },
+      // append the token to your requests:
+      //  .set('Authorization', user.token);
     
     
-  
+    };
+  });
+});
