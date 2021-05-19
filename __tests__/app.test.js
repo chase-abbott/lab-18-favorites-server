@@ -28,6 +28,7 @@ describe('API Routes', () => {
       expect(response.status).toBe(200);
 
       user = response.body;
+      console.log(user);
     });
 
     let gif = {
@@ -50,10 +51,21 @@ describe('API Routes', () => {
         }
 
       },
-      // append the token to your requests:
-      //  .set('Authorization', user.token);
-    
-    
     };
+    test('POST favorite', async () => {
+      gif.userId = user.id;
+      const response = await request
+        .post('/api/favorites')
+        .set('Authorization', user.token)
+        .send(gif);
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(gif);
+      gif = response.body;
+    }
+    );
+
+
+
   });
 });
