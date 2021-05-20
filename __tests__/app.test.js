@@ -13,6 +13,7 @@ describe('API Routes', () => {
 
   describe('/api/gifs', () => {
     let user;
+    let gif;
 
     beforeAll(async () => {
       execSync('npm run recreate-tables');
@@ -30,7 +31,7 @@ describe('API Routes', () => {
       user = response.body;
  
     });
-    let gif = {
+    gif = {
       url: 'https://giphy.com/gifs/cat-smoke-smoking-3o6Zt481isNVuQI1l6',
       title: 'Cat Smoking GIF by sheepfilms',
       rating: 'pg-13',
@@ -50,15 +51,15 @@ describe('API Routes', () => {
 
       },
     };
-
     test('POST favorite', async () => {
+      
       gif.userId = user.id;
       const response = await request
         .post('/api/favorites')
         .set('Authorization', user.token)
         .send(gif);
 
-     
+      gif = response.body;
       expect(response.status).toBe(200);
       expect(response.body).toEqual({
         id: expect.any(Number),
@@ -91,7 +92,7 @@ describe('API Routes', () => {
         .set('Authorization', user.token);
     
       expect(response.status).toBe(200);
-      expect(response.body).toEqual(gif);
+      expect(response.body).toStrictEqual(gif);
      
     });
 
@@ -102,7 +103,7 @@ describe('API Routes', () => {
         .send(gif);
 
       expect(response.status).toBe(200);
-      expect(response.body).toBe(gif);
+      expect(response.body).toStrictEqual(gif);
 
     });
 
