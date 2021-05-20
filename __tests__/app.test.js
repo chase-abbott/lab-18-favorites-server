@@ -29,6 +29,7 @@ describe('API Routes', () => {
       expect(response.status).toBe(200);
 
       user = response.body;
+     
  
     });
     gif = {
@@ -58,7 +59,8 @@ describe('API Routes', () => {
         .post('/api/favorites')
         .set('Authorization', user.token)
         .send(gif);
-
+        
+     
       gif = response.body;
       expect(response.status).toBe(200);
       expect(response.body).toEqual({
@@ -82,7 +84,6 @@ describe('API Routes', () => {
         },
         userId: 1
       });
-      console.log(gif);
     }
     );
 
@@ -92,7 +93,7 @@ describe('API Routes', () => {
         .set('Authorization', user.token);
     
       expect(response.status).toBe(200);
-      expect(response.body).toStrictEqual(gif);
+      expect(response.body[0]).toEqual(gif);
      
     });
 

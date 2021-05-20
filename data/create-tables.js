@@ -22,7 +22,7 @@ async function run() {
         url VARCHAR(512) NOT NULL,
         title VARCHAR(512) NOT NULL,
         rating VARCHAR(64) NOT NULL,
-        images VARCHAR(65535) NOT NULL,
+        images JSON NOT NULL,
         user_id INTEGER NOT NULL REFERENCES users(id)
       );
     `);
